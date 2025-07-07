@@ -30,7 +30,7 @@ def listen_command():
         audio = r.listen(source)
     try:
         print("Recognizing...")
-        query = r.recognize_google(audio, language='tel-in')
+        query = r.recognize_google(audio, language='en-in')
         print(f"User said: {query}\n")
     except Exception:
         speak("Sorry, I didn't get that. Could you say it again?")
