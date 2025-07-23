@@ -5,13 +5,16 @@ import os
 import webbrowser
 import pyjokes
 
-engine = pyttsx3.init()
-engine.setProperty('rate', 150)
+engine=pyttsx3.init()
+voices = engine.getProperty('voices')
+engine.setProperty('voice', voices[1].id)   
+is_muted=False
 
 def speak(text):
-    engine.say(text)
-    engine.runAndWait()
-
+    global is_muted
+    if not is_muted:
+        engine.say(text)
+        engine.runAndWait()
 def greet():
     hour = datetime.datetime.now().hour
     if 5 <= hour < 12:
@@ -50,6 +53,10 @@ def run_assistant():
             speak("Closing Notepad.")
             os.system("taskkill /f /im notepad.exe")
 
+        elif 'open settings' in command:
+         speak("Opening Settings.")
+         os.system("start ms-settings:")    
+
         elif 'open browser' in command:
             speak("Opening browser.")
             webbrowser.open("https://www.google.com")
@@ -66,7 +73,7 @@ def run_assistant():
          os.system("taskkill /f /im firefox.exe")
 
 
-        elif 'what is the time ' in command or 'tell me the time' in command:
+        elif 'what is the time' in command or 'tell me the time' in command:
             strTime = datetime.datetime.now().strftime("%H:%M:%S")
             speak(f"The time is {strTime}")
 
@@ -74,32 +81,53 @@ def run_assistant():
             joke = pyjokes.get_joke()
             speak(joke)
 
-        elif 'open instagram' in command:
+        elif 'open insta'  in command:
          speak("Opening Instagram.")
          webbrowser.open("https://www.instagram.com")
 
-        elif 'search instagram for' in command:
-         query = command.replace("search instagram for", "").strip().replace(" ", "%20")
-         speak(f"Searching Instagram for {query}")
-         webbrowser.open(f"https://www.instagram.com/explore/tags/{query}/")
+        elif 'open facebook' in command:
+         speak("opening facebook")
+         webbrowser.open("https://www.facebook.com")  
 
-        elif 'open profile' in command:
-         username = command.replace("open profile", "").strip()
-         speak(f"Opening Instagram profile of {username}")
-         webbrowser.open(f"https://www.instagram.com/{username}/")
+        elif 'open linkedln' in command:
+         speak("opening linkedin")
+         webbrowser.open("https://www.linkedln.com")
+
+        elif 'open youtube' in command:
+         speak("Opening YouTube.")
+         webbrowser.open("https://www.youtube.com")
+
+        elif 'open whatsapp' in command:
+         speak("Opening WhatsApp.")
+         webbrowser.open("https://web.whatsapp.com")
 
         elif 'open reels' in command:
          speak("Opening Instagram Reels.")
          webbrowser.open("https://www.instagram.com/reels/")
-       
-        
+         
+        elif 'open twitter' in command:
+         speak("Opening Twitter.")
+         webbrowser.open("https://www.twitter.com")
+
+        elif 'open google' in command:
+         speak("Opening Google.")
+         webbrowser.open("https://www.google.com")
+
+        elif 'open gmail' in command:
+         speak("Opening Gmail.")
+         webbrowser.open("https://mail.google.com")
+
+        elif 'open calculator' in command:
+         speak("Opening Calculator.")
+         os.system("calc.exe")
+
+
         elif 'exit' in command or 'quit' in command or 'stop' in command:
          speak("Goodbye!")
          break
 
         elif command:
-         speak("Sorry, I can't do that yet.")
+         speak("Sorry, I can't do that yet is not in my capabilities.")
 
 if __name__ == "__main__":
-    run_assistant()
-
+    run_assistant()                        
