@@ -1,4 +1,4 @@
-Voice-Controlled Assistant:
+VOICE CONTROLLED-ASSIANT:
 Introduction:
 The project “Voice-Controlled Assistant” is a Python-based desktop application that listens to voice commands from the user and executes a wide range of system-level and internet-related tasks. The aim of this project is to simulate the behavior of a smart personal assistant that responds to verbal instructions without the need for physical interaction through keyboard or mouse. It integrates various Python libraries for speech recognition, text-to-speech conversion, web automation, and system operations to deliver a smooth and interactive experience.
 
